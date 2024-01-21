@@ -21,6 +21,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { createTodo } from "@/actions/create-todo";
+import { useModal } from "@/lib/use-store";
 
 export function TodoForm() {
   const form = useForm<z.infer<typeof TodoListFormSchema>>({
@@ -35,10 +36,12 @@ export function TodoForm() {
     },
   });
 
+  const { closeModal } = useModal();
+
   async function onSubmit(values: z.infer<typeof TodoListFormSchema>) {
-    console.log(values);
-    const response = await createTodo(values);
-    console.log(response);
+    await createTodo(values);
+    form.reset();
+    closeModal();
   }
 
   return (
