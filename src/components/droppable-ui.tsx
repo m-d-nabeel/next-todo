@@ -15,7 +15,11 @@ export default function DroppableUI({
   header: string;
 }) {
   return (
-    <Droppable droppableId="completed" type="card" direction="horizontal">
+    <Droppable
+      droppableId={header.toLowerCase()}
+      type="card"
+      direction="horizontal"
+    >
       {(provided) => (
         <div
           className={cn(
@@ -43,7 +47,7 @@ export default function DroppableUI({
           </h2>
           <Badge variant="secondary">{list.length}</Badge>
           <div className="mt-4">
-            <Droppable droppableId={header.toLowerCase()}>
+            <Droppable droppableId={header.toLowerCase() + "RandomX"}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {list.map((todo, i) => (

@@ -27,11 +27,15 @@ export function TodoUI({ todoList }: { todoList: Todo[] | undefined }) {
 
   const handleDragEnd = async (result: any) => {
     const { source, destination } = result;
+    console.log(source, destination);
+
     const todoId = result.draggableId;
     try {
       const dst = destination.droppableId;
       const todoToSwap = todoList?.find((todo) => todo.id === todoId);
-      await reorderTodoList({ dst, todoId });
+      console.log(todoToSwap);
+
+      // await reorderTodoList({ dst, todoId });
     } catch (err) {
       console.log(err);
     }
@@ -40,17 +44,17 @@ export function TodoUI({ todoList }: { todoList: Todo[] | undefined }) {
   return (
     <div className="bg-white md:p-8 sm:p-4 p-0 w-full h-full ">
       <div className="flex w-full flex-wrap items-center justify-between gap-4 mb-8">
-        <Button className="bg-[#f3f4f6] text-black" variant="outline">
+        <Button className="bg-[#f3f4f6] text-black" disabled variant="outline">
           All Tasks
         </Button>
-        <Button className="bg-[#f3f4f6] text-black" variant="outline">
+        <Button className="bg-[#f3f4f6] text-black" disabled variant="outline">
           Boards
         </Button>
         <div className="flex-grow" />
-        <Button className="bg-[#f3f4f6] text-black" variant="outline">
+        <Button className="bg-[#f3f4f6] text-black" disabled variant="outline">
           Filter
         </Button>
-        <Button className="bg-[#f3f4f6] text-black" variant="outline">
+        <Button className="bg-[#f3f4f6] text-black" disabled variant="outline">
           Sort
         </Button>
         <Button className="bg-[#22c55e] text-white" onClick={openModal}>
@@ -58,7 +62,6 @@ export function TodoUI({ todoList }: { todoList: Todo[] | undefined }) {
         </Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-        {/* DraggableContext */}
         <DragDropContext onDragEnd={handleDragEnd}>
           <DroppableUI header="Incomplete" list={incomplete} />
           <DroppableUI header="Ongoing" list={ongoing} />

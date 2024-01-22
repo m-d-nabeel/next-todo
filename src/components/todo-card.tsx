@@ -25,15 +25,11 @@ export const TodoCard = ({
   <Draggable draggableId={id} index={index}>
     {(provided) => (
       <Card
-        onDragCapture={(e) => console.log(e)}
         className="mb-4"
         {...provided.draggableProps}
         ref={provided.innerRef}
       >
-        <CardHeader
-          {...provided.dragHandleProps}
-          onDragCapture={(e) => console.log(e)}
-        >
+        <CardHeader {...provided.dragHandleProps}>
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
