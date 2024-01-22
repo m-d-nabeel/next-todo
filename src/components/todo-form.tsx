@@ -20,7 +20,7 @@ import { TodoListFormSchema } from "@/schemas";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
-import { createTodo } from "@/actions/create-todo";
+import { createTodo } from "@/actions";
 import { useModal } from "@/lib/use-store";
 
 export function TodoForm() {

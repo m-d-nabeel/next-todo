@@ -1,4 +1,4 @@
-import { getTodoList } from "@/actions/create-todo";
+import { getTodoList } from "@/actions";
 import { TodoUI } from "@/components/todo-ui";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";

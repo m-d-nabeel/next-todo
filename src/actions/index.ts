@@ -1,5 +1,5 @@
 "use server";
-import { todoList } from "@/app/data";
+import { todoList, swapTodoList } from "@/app/data";
 import { getSession } from "@auth0/nextjs-auth0";
 import { TodoListFormSchema } from "@/schemas/index";
 import z from "zod";
@@ -41,6 +41,41 @@ export const getTodoList = async () => {
         return todo;
       }
     });
+
+    return { status: "success", data: filteredTodoList };
+  } catch (error) {
+    console.log(error);
+    return { status: "failed" };
+  }
+};
+
+type ReorderProps = {
+  dst: "incomplete" | "ongoing" | "completed";
+  todoId: string;
+};
+export const reorderTodoList = async ({ dst, todoId }: ReorderProps) => {
+  try {
+    const session = await getSession();
+    const userId = session?.user?.sub;
+
+    if (!userId) {
+      return { status: "failed" };
+    }
+
+    const reorderedTodoList = todoList.map((todo) => {
+      if (todo.createdBy === userId && todo.id === todoId) {
+        const newTodo = { ...todo, status: dst };
+        console.log(newTodo);
+        return newTodo;
+      }
+      return todo;
+    });
+
+    swapTodoList(reorderedTodoList);
+
+    const filteredTodoList = todoList.filter(
+      (todo) => todo.createdBy === userId
+    );
 
     return { status: "success", data: filteredTodoList };
   } catch (error) {

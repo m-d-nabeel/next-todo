@@ -4,7 +4,7 @@ export const TodoSchema = z.object({
   id: z.string(),
   title: z.string().min(1).max(255),
   description: z.string().optional(),
-  status: z.enum(["incompleted", "ongoing", "completed"]),
+  status: z.enum(["incomplete", "ongoing", "completed"]),
   category: z.enum(["work", "personal", "others"]),
   priority: z.enum(["low", "medium", "high"]),
   tags: z.array(z.string()).optional(),
@@ -17,7 +17,7 @@ export const TodoSchema = z.object({
 export const TodoListFormSchema = z.object({
   title: z.string().min(1).max(255),
   description: z.string().optional(),
-  status: z.enum(["incompleted", "ongoing", "completed"]),
+  status: z.enum(["incomplete", "ongoing", "completed"]),
   category: z.enum(["work", "personal", "others"]),
   priority: z.enum(["low", "medium", "high"]),
   dueDate: z.string(),
