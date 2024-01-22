@@ -31,7 +31,7 @@ export function TodoForm() {
       description: "",
       category: "personal",
       priority: "medium",
-      status: "incompleted",
+      status: "incomplete",
       dueDate: new Date().toISOString().split("T")[0],
     },
   });
