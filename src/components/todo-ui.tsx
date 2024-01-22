@@ -27,12 +27,9 @@ export function TodoUI({ todoList }: { todoList: Todo[] | undefined }) {
 
   const handleDragEnd = async (result: any) => {
     const { source, destination } = result;
-    console.log(source, destination);
-
     const todoId = result.draggableId;
     try {
       const dst = destination.droppableId;
-      const todoToSwap = todoList?.find((todo) => todo.id === todoId);
       await reorderTodoList({ dst, todoId });
     } catch (err) {
       console.log(err);
