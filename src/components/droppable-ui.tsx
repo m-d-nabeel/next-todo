@@ -47,7 +47,7 @@ export default function DroppableUI({
           </h2>
           <Badge variant="secondary">{list.length}</Badge>
           <div className="mt-4">
-            <Droppable droppableId={header.toLowerCase() + "RandomX"}>
+            <Droppable droppableId={header.toLowerCase()}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {list.map((todo, i) => (

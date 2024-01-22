@@ -65,7 +65,6 @@ export const reorderTodoList = async ({ dst, todoId }: ReorderProps) => {
     const reorderedTodoList = todoList.map((todo) => {
       if (todo.createdBy === userId && todo.id === todoId) {
         const newTodo = { ...todo, status: dst };
-        console.log(newTodo);
         return newTodo;
       }
       return todo;
