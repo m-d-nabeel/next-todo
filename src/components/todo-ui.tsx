@@ -33,9 +33,7 @@ export function TodoUI({ todoList }: { todoList: Todo[] | undefined }) {
     try {
       const dst = destination.droppableId;
       const todoToSwap = todoList?.find((todo) => todo.id === todoId);
-      console.log(todoToSwap);
-
-      // await reorderTodoList({ dst, todoId });
+      await reorderTodoList({ dst, todoId });
     } catch (err) {
       console.log(err);
     }
